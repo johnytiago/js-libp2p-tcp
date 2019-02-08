@@ -77,7 +77,8 @@ class TCP {
         ma = ma.decapsulate('ipfs')
       }
 
-      return mafmt.TCP.matches(ma)
+      //HACK let filter allow "proxy" encapsulated addresses
+      return ma.protoNames()[1] === 'tcp'
     })
   }
 }
