@@ -78,7 +78,10 @@ class TCP {
       }
 
       //HACK let filter allow "proxy" encapsulated addresses
-      return ma.protoNames()[1] === 'tcp'
+      if (process.env.IPFS_KUBERNETES_PROXY)
+        return ma.protoNames()[1] === 'tcp'
+
+      return mafmt.TCP.matches(ma)
     })
   }
 }
